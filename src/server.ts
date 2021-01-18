@@ -1,17 +1,15 @@
 import express from 'express';
+import routes from './routes';
+
+import './database';
 
 const app = express();
-
 const port = 3333;
 
-app.get('/', (request, response) => {
-    response.json({ message: 'GREENGROCER' });
-});
+app.use(express.json());
+app.use(routes);
 
 app.listen(port, () => {
-    console.log(`Greengrocer server has started on port: ${port}`);
+    // eslint-disable-next-line no-console
+    console.log(`Servidor aberto na porta: ${port}`);
 });
-
-// Descobrir como trabalhar com express JSON
-// Dar uma olhada em o que é CORS
-// Testando bloqueio 2
