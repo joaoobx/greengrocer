@@ -7,28 +7,26 @@ export default class CreateSales1610983237675 implements MigrationInterface {
                 name: 'fruits',
                 columns: [
                     {
-                        name: 'ID',
+                        name: 'id',
                         type: 'int',
                         isPrimary: true,
+                        isGenerated: true,
                         generationStrategy: 'increment',
                     },
                     {
-                        name: 'Quantidade',
+                        name: 'amount',
                         type: 'int',
-                        isNullable: false,
                     },
                     {
-                        name: 'Valor',
+                        name: 'price',
                         type: 'float',
-                        isNullable: false,
                     },
                     {
-                        name: 'Qual Fruta',
+                        name: 'fruit',
                         type: 'varchar',
-                        isNullable: false,
                     },
                     {
-                        name: 'Data Transação',
+                        name: 'transaction_time',
                         type: 'timestamp',
                         default: 'now()',
                     },
@@ -43,9 +41,9 @@ export default class CreateSales1610983237675 implements MigrationInterface {
                         default: 'now()',
                     },
                     {
-                        name: 'Compra ou Venda',
+                        name: 'is_sell',
                         type: 'boolean',
-                        isNullable: false,
+                        default: false,
                     },
                 ],
             }),
