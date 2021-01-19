@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('fruits')
@@ -15,16 +16,16 @@ class Fruit {
     fruit: string;
 
     @Column('timestamp')
-    transactionDate: Date;
+    transaction_time: Date;
 
     @Column('timestamp')
-    createdAt: Date;
+    created_at: Date;
 
     @Column('timestamp')
-    editedAt: Date;
+    updated_at: Date;
 
     @Column()
-    buyOrSell: boolean;
+    is_sell: boolean;
 }
 
 export default Fruit;

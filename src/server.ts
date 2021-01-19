@@ -1,6 +1,9 @@
+import 'reflect-metadata';
+
 import express from 'express';
 import * as dotenv from 'dotenv';
 import routes from './routes';
+import './database';
 
 dotenv.config();
 
@@ -10,10 +13,8 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(routes);
 
-app.get('/', (req, res) => {
-    return res.json({
-        data: 'Hello World!!',
-    });
+app.get('/', async (req, res) => {
+    return res.json('hello world');
 });
 
 app.listen(port, () => {
