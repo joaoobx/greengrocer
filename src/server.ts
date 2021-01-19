@@ -1,17 +1,22 @@
 import express from 'express';
+import * as dotenv from 'dotenv';
+import routes from './routes';
+
+dotenv.config();
 
 const app = express();
+const port = process.env.PORT;
 
-const port = 3333;
+app.use(express.json());
+app.use(routes);
 
-app.get('/', (request, response) => {
-    response.json({ message: 'GREENGROCER' });
+app.get('/', (req, res) => {
+    return res.json({
+        data: 'Hello World!!',
+    });
 });
 
 app.listen(port, () => {
-    console.log(`Greengrocer server has started on port: ${port}`);
+    // eslint-disable-next-line no-console
+    console.log(`Servidor aberto na porta: http://localhost:${port}`);
 });
-
-// Descobrir como trabalhar com express JSON
-// Dar uma olhada em o que é CORS
-// Testando bloqueio 2
