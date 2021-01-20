@@ -4,12 +4,12 @@ import Fruit from '../models/Fruits';
 
 @EntityRepository(Fruit)
 class FruitRepository extends Repository<Fruit> {
-    public async findByDate(date: Date): Promise<Fruit | null> {
+    public async findById(id: number): Promise<Fruit | null> {
         /* const findFruit = this.Fruit.find(fruit => isEqual(date, fruit.date),
         ); */
 
         const findFruit = await this.findOne({
-            where: { date },
+            where: { id },
         });
 
         return findFruit || null;

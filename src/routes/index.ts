@@ -1,6 +1,6 @@
 // src/routes/index.ts
 import { Router } from 'express';
-import fruitsRouter from './sales.routes';
+import fruitsRouter from './FruitsRouter';
 
 const routes = Router();
 

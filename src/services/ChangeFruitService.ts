@@ -1,4 +1,5 @@
 import { getCustomRepository } from 'typeorm';
+import AppError from '../errors/AppError';
 
 import Fruit from '../models/Fruits';
 import FruitRepository from '../repositories/FruitRepository';
@@ -23,18 +24,21 @@ class ChangeFruitService {
     }: Request): Promise<Fruit> {
         const fruitRepository = getCustomRepository(FruitRepository);
 
-        const transaction = fruitRepository.create({
-            id,
-            amount,
-            price,
-            fruit,
-            transaction_time,
-            is_sell,
-        });
+        const thisFruit = await fruitRepository.findOne(id);
 
-        const fruita = await fruitRepository.save(transaction);
+        if (!thisFruit) {
+            throw new AppError('A fruta não foi encontrada!');
+        }
 
-        return fruita;
+        thisFruit.amount = amount;
+        thisFruit.price = price;
+        thisFruit.fruit = fruit;
+        thisFruit.transaction_time = transaction_time || new Date();
+        thisFruit.is_sell = is_sell;
+
+        await fruitRepository.save(thisFruit);
+
+        return thisFruit;
     }
 }
 
