@@ -11,7 +11,20 @@ class FruitRepository extends Repository<Fruit> {
         return findFruit || null;
     }
 
-    // create
+    public async createFruit(fruitDTO: Fruit): Promise<Fruit> {
+        const { amount, price, fruit, transaction_time, is_sell } = fruitDTO;
+        const transaction = this.create({
+            amount,
+            price,
+            fruit,
+            transaction_time,
+            is_sell,
+        });
+
+        await this.save(transaction);
+
+        return transaction;
+    }
 }
 
 export default FruitRepository;

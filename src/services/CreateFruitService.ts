@@ -21,7 +21,7 @@ class TransactionService {
     }: Request): Promise<Fruit> {
         const fruitRepository = getCustomRepository(FruitRepository);
 
-        const transaction = fruitRepository.create({
+        const transaction = await fruitRepository.createFruit({
             amount,
             price,
             fruit,
@@ -29,9 +29,7 @@ class TransactionService {
             is_sell,
         });
 
-        const fruita = await fruitRepository.save(transaction);
-
-        return fruita;
+        return transaction;
     }
 }
 
