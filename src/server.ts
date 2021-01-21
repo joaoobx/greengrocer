@@ -26,12 +26,14 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
             .json({ status: 'error', message: err.message });
     }
 
+    console.error(err);
+
     return response
         .status(500)
         .json({ status: 'error', message: 'Internal server error' });
 });
 
-app.listen(port, () => {
+app.listen(3332, () => {
     // eslint-disable-next-line no-console
     console.log(`Servidor aberto na porta: http://localhost:${port}`);
 });

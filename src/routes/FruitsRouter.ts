@@ -14,9 +14,9 @@ fruitsRouter.get('/', async (request, response) => {
 });
 
 fruitsRouter.post('/', async (request, response) => {
-    // passarm informaçoes para o serviçe, aguardar o serviçe responder
+    // logica que verifica se o request é SELL OU BUY request.
 
-    const { amount, price, fruit, transaction_time, is_sell } = request.body;
+    const { amount, price, fruit, transaction_time } = request.body;
 
     const fruitsService = new CreateFruitService();
 
@@ -25,7 +25,7 @@ fruitsRouter.post('/', async (request, response) => {
         price,
         fruit,
         transaction_time,
-        is_sell,
+        is_sell: false, // se logica lá de cima ver que é sell então true
     });
     return response.json(fruitrequest);
 });
@@ -37,9 +37,12 @@ fruitsRouter.put('/:id', async (request, response) => {
     const id = +request.params.id;
     // buscar fruta com id informado no banco, se não encontrada, responder que nãio pode editar, pois fruta não existe
     const findOneFruitService = new FindOneFruitService();
-    await findOneFruitService.execute({
+    const frutaAchada = await findOneFruitService.execute({
         id,
     });
+
+    // se fruta achada foi comprada nos ultimos 3 dias... lembrando que o dia começa as 00:00 e não na hora da compra
+
     // se a fruta existir executar atualização da fruta
     const fruitsService = new ChangeFruitService();
 

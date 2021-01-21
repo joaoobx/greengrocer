@@ -4,6 +4,7 @@ import fruitsRouter from './FruitsRouter';
 
 const routes = Router();
 
-routes.use('/fruits', fruitsRouter);
+routes.use('/buy', fruitsRouter);
+routes.use('/sell', fruitsRouter);
 
 export default routes;
