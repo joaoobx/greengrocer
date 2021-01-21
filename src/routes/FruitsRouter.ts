@@ -27,6 +27,10 @@ fruitsRouter.post('/', async (request, response) => {
         transaction_time,
         is_sell: false, // se logica lá de cima ver que é sell então true
     });
+
+    // registra se FOR VENDA /\ na tabela que vc quiser o que vc quiser......
+    // só precisa criar o Serviço, Movel, Repository, Tabela,
+
     return response.json(fruitrequest);
 });
 
